@@ -1,7 +1,9 @@
 # UNBLOCKED GAMES!
+A collection of  unblocked games.
 
 
 ## .IO GAMES
+A collection of some unblocked .io games.
 
 
 
