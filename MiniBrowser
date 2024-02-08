@@ -41,7 +41,7 @@ javascript:(function() {
 
   function main() {
     loadStyles();
-    $('body').append('<div id="draggable" class="ui-widget-content"><div id="dragHandle"></div><iframe src="http://google.com"></iframe></div>');
+    $('body').append('<div id="draggable" class="ui-widget-content"><div id="dragHandle"></div><iframe src="https://google.com"></iframe></div>');
     $("#draggable").draggable({ handle: "#dragHandle" }).resizable({ iframeFix: true, minHeight: 150, minWidth: 200 });
   }
 
