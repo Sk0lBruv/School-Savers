@@ -1,3 +1,3 @@
-# How to cure boredem? V
+## How to cure boredem?
 
-## THIS WEBSITE!
+# THIS WEBSITE!
