@@ -1,0 +1,69 @@
+javascript:(function() {
+  function loadJQueryAndUI(callback) {
+    if (!window.jQuery) {
+      var script = document.createElement('script');
+      script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+      document.head.appendChild(script);
+      script.onload = function() {
+        var uiScript = document.createElement('script');
+        uiScript.src = 'https://code.jquery.com/ui/1.13.1/jquery-ui.min.js';
+        document.head.appendChild(uiScript);
+        uiScript.onload = callback;
+      };
+    } else if (!window.jQuery.ui) {
+      var uiScript = document.createElement('script');
+      uiScript.src = 'https://code.jquery.com/ui/1.13.1/jquery-ui.min.js';
+      document.head.appendChild(uiScript);
+      uiScript.onload = callback;
+    } else {
+      callback();
+    }
+  }
+
+  function loadStyles() {
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `
+      #draggable { 
+        width: 300px; 
+        height: 200px; 
+        padding: .5em; 
+        position: fixed; 
+        top: 50px; 
+        left: 50px; 
+        z-index: 10000; 
+      }
+      #dragHandle {
+        width: 100%;
+        height: 20px;
+        background-color: #3b6e8f;
+        cursor: move;
+      }
+      #draggable iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }`;
+    document.head.appendChild(style);
+  }
+
+  function main(url) {
+    loadStyles();
+    var body = document.body;
+    var draggable = document.createElement('div');
+    draggable.id = 'draggable';
+    draggable.innerHTML = '<div id="dragHandle">Drag here</div><iframe src="' + url + '"></iframe>';
+    body.appendChild(draggable);
+
+    $(function() {
+      $("#draggable").draggable({ handle: "#dragHandle" }).resizable();
+    });
+  }
+
+  loadJQueryAndUI(function() {
+    var url = prompt("Enter the URL you want to load:", "https://google.com");
+    if (url) {
+      main(url);
+    }
+  });
+})();
