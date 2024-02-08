@@ -1,54 +1,51 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Draggable and Resizable Iframe with Drag Handle</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <style>
-    #draggable { 
-      width: 300px; 
-      height: 200px; 
-      overflow: hidden;
-      position: relative; /* Ensure the drag handle is positioned correctly */
-    }
-    #dragHandle {
-      width: 100%;
-      height: 20px;
-      background-color: #3b6e8f; /* Lightish-dark blue color */
-      background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent); /* Subtle texture */
-      background-size: 20px 20px;
-      cursor: move; /* Change cursor to indicate this can be dragged */
-    }
-    iframe {
-      width: 100%;
-      height: calc(100% - 20px); /* Adjust height to account for drag handle */
-      border: none;
-      position: absolute;
-      top: 20px;
-      left: 0;
-    }
-  </style>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  <script>
-    $(function() {
-      $("#draggable").draggable({
-        handle: "#dragHandle"
-      }).resizable({
-        iframeFix: true,
-        minHeight: 150,
-        minWidth: 200
-      });
-    });
-  </script>
-</head>
-<body>
+javascript:(function() {
+  function loadScript(url, callback) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+    script.onload = callback;
+    document.head.appendChild(script);
+  }
 
-<div id="draggable" class="ui-widget-content">
-  <div id="dragHandle"></div>
-  <iframe src="http://Google.com"></iframe>
-</div>
+  function loadStyles() {
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = `
+      #draggable { 
+        width: 300px; 
+        height: 200px; 
+        overflow: hidden;
+        position: fixed; 
+        top: 50px; 
+        left: 50px; 
+        z-index: 99999; 
+      }
+      #dragHandle {
+        width: 100%;
+        height: 20px;
+        background-color: #3b6e8f;
+        background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+        background-size: 20px 20px;
+        cursor: move;
+      }
+      iframe {
+        width: 100%;
+        height: calc(100% - 20px);
+        border: none;
+        position: absolute;
+        top: 20px;
+        left: 0;
+      }`;
+    document.head.appendChild(style);
+  }
 
-</body>
-</html>
+  function main() {
+    loadStyles();
+    $('body').append('<div id="draggable" class="ui-widget-content"><div id="dragHandle"></div><iframe src="http://example.com"></iframe></div>');
+    $("#draggable").draggable({ handle: "#dragHandle" }).resizable({ iframeFix: true, minHeight: 150, minWidth: 200 });
+  }
+
+  loadScript('https://code.jquery.com/jquery-3.6.0.min.js', function() {
+    loadScript('https://code.jquery.com/ui/1.13.1/jquery-ui.min.js', main);
+  });
+})();
