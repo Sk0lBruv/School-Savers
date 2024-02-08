@@ -1,3 +1,3 @@
 # School-Savers
 
-Ultimate way to cure bordem
+## Ultimate way to cure boredom
