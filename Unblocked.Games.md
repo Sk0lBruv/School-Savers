@@ -1,5 +1,5 @@
 ## BEST ONES
 
-```link
+```lua
 us-history.pro
 ```
