@@ -1,3 +1,3 @@
-# School-Savers
+# How to cure boredem? V
 
-## Ultimate way to cure boredom
+## THIS WEBSITE!
